@@ -1,81 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Search, Plus, Edit2, Trash2, X } from "lucide-react";
 import Tooltips from "../Components/Tooltips";
+import { sendData } from "../api/ApiData";
+import { urlListarProductos } from "../api/UrlConfig";
 
 const Productos = () => {
-  const [productos, setProductos] = useState([
-    {
-      id: 1,
-      nombre: "Laptop HP",
-      categoria: "Electrónicos",
-      precio: 25000,
-      stock: 15,
-    },
-    {
-      id: 2,
-      nombre: "Mouse Logitech",
-      categoria: "Accesorios",
-      precio: 1200,
-      stock: 50,
-    },
-    {
-      id: 3,
-      nombre: "Teclado Mecánico",
-      categoria: "Accesorios",
-      precio: 3500,
-      stock: 30,
-    },
-    {
-      id: 4,
-      nombre: "Monitor 24''",
-      categoria: "Electrónicos",
-      precio: 18000,
-      stock: 8,
-    },
-    {
-      id: 5,
-      nombre: "Webcam HD",
-      categoria: "Accesorios",
-      precio: 2800,
-      stock: 25,
-    },
-    {
-      id: 6,
-      nombre: "Laptop HP",
-      categoria: "Electrónicos",
-      precio: 25000,
-      stock: 15,
-    },
-    {
-      id: 7,
-      nombre: "Mouse Logitech",
-      categoria: "Accesorios",
-      precio: 1200,
-      stock: 50,
-    },
-    {
-      id: 8,
-      nombre: "Teclado Mecánico",
-      categoria: "Accesorios",
-      precio: 3500,
-      stock: 30,
-    },
-    {
-      id: 9,
-      nombre: "Monitor 24''",
-      categoria: "Electrónicos",
-      precio: 18000,
-      stock: 8,
-    },
-    {
-      id: 10,
-      nombre: "Webcam HD",
-      categoria: "Accesorios",
-      precio: 2800,
-      stock: 25,
-    },
-  ]);
-
+  const [productos, setProductos] = useState([]);
+  const listarProductos = async () => {
+    try {
+      const response = await sendData(urlListarProductos, "GET", null, null);
+      if (response.status === 200) {
+        setProductos(response?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const [filtroCategoria, setFiltroCategoria] = useState("");
   const [busqueda, setBusqueda] = useState("");
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -96,12 +36,13 @@ const Productos = () => {
   const categorias = [...new Set(productos.map((p) => p.categoria))];
 
   const productosFiltrados = productos.filter((producto) => {
-    const coincideBusqueda = producto.nombre
-      .toLowerCase()
-      .includes(busqueda.toLowerCase());
-    const coincideCategoria =
-      filtroCategoria === "" || producto.categoria === filtroCategoria;
-    return coincideBusqueda && coincideCategoria;
+    const coincideBusqueda =
+      producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()) ||
+      producto.descripcioncategoria
+        .toLowerCase()
+        .includes(busqueda.toLowerCase()) ||
+      producto.descripcionmarca.toLowerCase().includes(busqueda.toLowerCase());
+    return coincideBusqueda;
   });
 
   const handleAgregarProducto = () => {
@@ -149,6 +90,10 @@ const Productos = () => {
     { id: "categoria", label: "Categoría", icon: "fas fa-folder" },
   ];
 
+  useEffect(() => {
+    listarProductos();
+  }, []);
+
   return (
     <div className="productos-container">
       <div className="productos-header">
@@ -163,19 +108,6 @@ const Productos = () => {
               className="search-input"
             />
           </div>
-
-          <select
-            value={filtroCategoria}
-            onChange={(e) => setFiltroCategoria(e.target.value)}
-            className="filtro-select"
-          >
-            <option value="">Todas las categorías</option>
-            {categorias.map((categoria) => (
-              <option key={categoria} value={categoria}>
-                {categoria}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div className="tooltip-container">
@@ -213,19 +145,24 @@ const Productos = () => {
         <table className="productos-tabla">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Categoría</th>
+              <th>Código</th>
+              <th>Descripción</th>
               <th>Precio</th>
+              <th>Marca</th>
+              <th>Categoria</th>
               <th>Stock</th>
-              <th>Acciones</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {productosFiltrados.map((producto) => (
+            {productosFiltrados?.map((producto) => (
               <tr key={producto.id}>
-                <td>{producto.nombre}</td>
-                <td>{producto.categoria}</td>
-                <td>{producto.precio.toLocaleString()}</td>
+                <td>{producto.codigo}</td>
+                <td>{producto.descripcion}</td>
+                <td>{producto.precioventa.toLocaleString("ES-es")}</td>
+                <td>{producto.descripcionmarca}</td>
+                <td>{producto.descripcioncategoria}</td>
                 <td>{producto.stock}</td>
                 <td className="acciones">
                   <button className="btn-editar">
