@@ -1,0 +1,152 @@
+.cts-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  width: 320px;
+  animation: cts-fadeInUp 0.3s ease-out;
+}
+
+.cts-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-left: 4px solid;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--cts-bg);
+  border-color: var(--cts-border);
+}
+
+.cts-icon {
+  flex-shrink: 0;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  color: var(--cts-icon-color);
+  background-color: var(--cts-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cts-content {
+  flex-grow: 1;
+}
+
+.cts-title {
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.cts-message {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.cts-shortcut {
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #e5e7eb;
+  font-size: 0.75rem;
+  color: #374151;
+}
+
+.cts-close {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease-in-out;
+  align-self: start;
+}
+
+.cts-close:hover {
+  color: #374151;
+}
+
+@keyframes cts-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Colors for types */
+
+.cts-success-bg {
+  --cts-bg: #ecfdf5;
+}
+
+.cts-success-border {
+  --cts-border: #bbf7d0;
+}
+
+.cts-success-icon {
+  --cts-icon-color: #22c55e;
+  --cts-icon-bg: #dcfce7;
+}
+
+.cts-info-bg {
+  --cts-bg: #eff6ff;
+}
+
+.cts-info-border {
+  --cts-border: #bfdbfe;
+}
+
+.cts-info-icon {
+  --cts-icon-color: #2563eb;
+  --cts-icon-bg: #dbeafe;
+}
+
+.cts-warning-bg {
+  --cts-bg: #fef3c7;
+}
+
+.cts-warning-border {
+  --cts-border: #fde68a;
+}
+
+.cts-warning-icon {
+  --cts-icon-color: #d97706;
+  --cts-icon-bg: #fef9c3;
+}
+
+.cts-error-bg {
+  --cts-bg: #fee2e2;
+}
+
+.cts-error-border {
+  --cts-border: #fecaca;
+}
+
+.cts-error-icon {
+  --cts-icon-color: #dc2626;
+  --cts-icon-bg: #fecaca;
+}
+
+.cts-default-bg {
+  --cts-bg: #f9fafb;
+}
+
+.cts-default-border {
+  --cts-border: #e5e7eb;
+}
+
+.cts-default-icon {
+  --cts-icon-color: #6b7280;
+  --cts-icon-bg: #f3f4f6;
+}

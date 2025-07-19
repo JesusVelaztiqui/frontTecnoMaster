@@ -1,0 +1,146 @@
+@import "../Styles/variables.scss";
+
+.layout {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  .sidebar {
+    width: 15vw;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0.5%;
+    background-color: $cambridge-blue;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    .sidebarIn {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      .profile {
+        width: 100%;
+        height: 10vh;
+        border-radius: 10px;
+        overflow: hidden;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 1% 2%;
+        background-color: $viridian;
+        .perfil {
+          width: 45px;
+          height: 5vh;
+          background-color: #fff;
+          border-radius: 50%;
+          overflow: hidden;
+          box-sizing: border-box;
+          border: 3px solid #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          & img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .dateuser {
+          width: 75%;
+          height: 10vh;
+          overflow: hidden;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          .user {
+            width: 100%;
+            height: 40%;
+            display: flex;
+            align-items: center;
+            & h2 {
+              font-size: 1.3rem;
+              font-weight: 800;
+              text-transform: uppercase;
+              color: #fff;
+            }
+          }
+          .mailuser {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            & h2 {
+              font-size: 0.8rem;
+              font-weight: 500;
+              color: #fff;
+            }
+          }
+        }
+      }
+      .contentItemsMenu {
+        width: 100%;
+        height: 70%;
+        overflow: hidden;
+        box-sizing: border-box;
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+        .itemsnav {
+          width: 100%;
+          height: 6vh;
+          overflow: hidden;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          &:hover {
+            background-color: $viridian;
+          }
+          .icon {
+            width: 20%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & i {
+              font-size: 1rem;
+              color: #fff;
+            }
+          }
+          .navmenu {
+            width: 80%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+
+            & h2 {
+              font-size: 1rem;
+              font-weight: 400;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  .contentWebPagnator {
+    width: 85vw;
+    height: 100vh;
+    overflow-x: auto;
+    // background-color: aqua;
+  }
+}

@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  .bodyContent {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background-image: url("../../../public/Imagenes/Luque2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    > * {
+      position: relative;
+      z-index: 2;
+    }
+    .cardHeader {
+      width: 100%;
+      height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-sizing: border-box;
+      .containImg {
+        background-color: #fff;
+        width: 8vw;
+        height: 100vw;
+        overflow: hidden;
+        padding: 1%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10vw;
+        & img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .cardlogin {
+      width: 30vw;
+      height: 40vh;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5%;
+      gap: 30px;
+      flex-direction: column;
+      .textWelcome {
+        width: 100%;
+        height: 3vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        & h1 {
+          font-size: 1.8rem;
+          color: #254e9f;
+          font-weight: 600;
+        }
+      }
+      .textGroupBussines {
+        width: 100%;
+        height: 3vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        & h2 {
+          font-weight: 400;
+          font-size: 1.5rem;
+          color: #222;
+        }
+      }
+
+      .cointainInputs {
+        width: 50%;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 1%;
+        input {
+          width: 100%;
+          padding: 12px 16px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 16px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          background-color: #f9f9f9;
+
+          &:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+            background-color: #fff;
+          }
+
+          &::placeholder {
+            color: #aaa;
+          }
+        }
+      }
+      .buttons {
+        width: 50%;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        & button {
+          width: 100%;
+          height: 100%;
+          background-color: #254e9f;
+          font-size: 1.2rem;
+          border: none;
+          border-radius: 10px;
+          color: #fff;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          &:hover {
+            background-color: #092969;
+          }
+        }
+      }
+    }
+  }
+}
