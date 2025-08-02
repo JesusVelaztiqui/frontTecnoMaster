@@ -129,15 +129,7 @@ const Productos = () => {
   };
 
   const handleEliminar = (id) => {
-    const productoEliminado = productos.find((p) => p.id === id);
-    setProductos(productos.filter((p) => p.id !== id));
-
-    setTooltipData({
-      type: "warning",
-      title: "Producto eliminado",
-      message: `${productoEliminado.nombre} fue eliminado del inventario`,
-    });
-    setMostrarTooltip(true);
+    console.log(id);
   };
 
   const opcionesNuevo = [
@@ -228,7 +220,7 @@ const Productos = () => {
                   </button>
                   <button
                     className="btn-eliminar"
-                    onClick={() => handleEliminar(producto.id)}
+                    onClick={() => handleEliminar(producto.codigo)}
                   >
                     <Trash2 size={16} />
                   </button>
