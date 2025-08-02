@@ -19,14 +19,14 @@ const Productos = () => {
     idmarca: 1,
     stock: 1,
     tipoimpuesto: "",
-    porcentajeimpuesto: 10,
+    porcentajeimpuesto: 0,
     descripcion: "",
     preciocompra: 0,
     precioventa: 0,
     tipoproducto: "",
     idcategoria: 1,
     codigo: "",
-    estado: true,
+    estado: false,
   });
   const listarProductos = async () => {
     try {
