@@ -2,10 +2,32 @@ import React, { useEffect, useState } from "react";
 import { Search, Plus, Edit2, Trash2, X } from "lucide-react";
 import Tooltips from "../Components/Tooltips";
 import { sendData } from "../api/ApiData";
-import { urlListarProductos } from "../api/UrlConfig";
+import {
+  urlListarProductos,
+  urlListarCategorias,
+  urlListarMarcas,
+  urlGuardarProductos,
+} from "../api/UrlConfig";
+import Modal from "../Components/Modal";
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [marcas, setMarcas] = useState([]);
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [productModel, setProductModel] = useState({
+    idmarca: 1,
+    stock: 1,
+    tipoimpuesto: "",
+    porcentajeimpuesto: 10,
+    descripcion: "",
+    preciocompra: 0,
+    precioventa: 0,
+    tipoproducto: "",
+    idcategoria: 1,
+    codigo: "",
+    estado: true,
+  });
   const listarProductos = async () => {
     try {
       const response = await sendData(urlListarProductos, "GET", null, null);
@@ -16,9 +38,52 @@ const Productos = () => {
       console.log(error);
     }
   };
-  const [filtroCategoria, setFiltroCategoria] = useState("");
+  const listarCategorias = async () => {
+    try {
+      const response = await sendData(urlListarCategorias, "GET", null, null);
+      if (response.status === 200) {
+        setCategorias(response?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const listarMarcas = async () => {
+    try {
+      const response = await sendData(urlListarMarcas, "GET", null, null);
+      if (response.status === 200) {
+        setMarcas(response?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const grabarProductos = async () => {
+    try {
+      const response = await sendData(
+        urlGuardarProductos,
+        "POST",
+        null,
+        productModel
+      );
+      if (response.status === 200) {
+        await listarProductos();
+        setModalAbierto(false);
+        setTooltipData({
+          type: "success",
+          title: "Producto Grabado",
+          message: response.mensaje,
+        });
+        setMostrarTooltip(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [busqueda, setBusqueda] = useState("");
-  const [modalAbierto, setModalAbierto] = useState(false);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
   const [tooltipData, setTooltipData] = useState({
@@ -26,14 +91,6 @@ const Productos = () => {
     title: "",
     message: "",
   });
-  const [nuevoProducto, setNuevoProducto] = useState({
-    nombre: "",
-    categoria: "",
-    precio: "",
-    stock: "",
-  });
-
-  const categorias = [...new Set(productos.map((p) => p.categoria))];
 
   const productosFiltrados = productos.filter((producto) => {
     const coincideBusqueda =
@@ -45,31 +102,30 @@ const Productos = () => {
     return coincideBusqueda;
   });
 
-  const handleAgregarProducto = () => {
-    if (
-      nuevoProducto.nombre &&
-      nuevoProducto.categoria &&
-      nuevoProducto.precio &&
-      nuevoProducto.stock
-    ) {
-      const producto = {
-        id: Date.now(),
-        nombre: nuevoProducto.nombre,
-        categoria: nuevoProducto.categoria,
-        precio: parseFloat(nuevoProducto.precio),
-        stock: parseInt(nuevoProducto.stock),
-      };
-      setProductos([...productos, producto]);
-      setNuevoProducto({ nombre: "", categoria: "", precio: "", stock: "" });
-      setModalAbierto(false);
+  const handleAgregarProducto = (event) => {
+    const { name, value } = event.target;
 
-      setTooltipData({
-        type: "success",
-        title: "¡Producto agregado!",
-        message: `${producto.nombre} se agregó correctamente al inventario`,
-      });
-      setMostrarTooltip(true);
+    const camposNumericos = [
+      "stock",
+      "porcentajeimpuesto",
+      "preciocompra",
+      "precioventa",
+      "idmarca",
+      "idcategoria",
+    ];
+
+    let parsedValue = value;
+
+    if (camposNumericos.includes(name)) {
+      parsedValue = Number(value);
+    } else if (name === "estado") {
+      parsedValue = value === "true";
     }
+
+    setProductModel((prev) => ({
+      ...prev,
+      [name]: parsedValue,
+    }));
   };
 
   const handleEliminar = (id) => {
@@ -92,6 +148,8 @@ const Productos = () => {
 
   useEffect(() => {
     listarProductos();
+    listarCategorias();
+    listarMarcas();
   }, []);
 
   return (
@@ -181,79 +239,127 @@ const Productos = () => {
         </table>
       </div>
 
-      {modalAbierto && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <div className="modal-header">
-              <h3>Agregar Nuevo Producto</h3>
-              <button
-                onClick={() => setModalAbierto(false)}
-                className="btn-cerrar"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="modal-body">
-              <input
-                type="text"
-                placeholder="Nombre del producto"
-                value={nuevoProducto.nombre}
-                onChange={(e) =>
-                  setNuevoProducto({ ...nuevoProducto, nombre: e.target.value })
-                }
-                className="modal-input"
-              />
-
-              <input
-                type="text"
-                placeholder="Categoría"
-                value={nuevoProducto.categoria}
-                onChange={(e) =>
-                  setNuevoProducto({
-                    ...nuevoProducto,
-                    categoria: e.target.value,
-                  })
-                }
-                className="modal-input"
-              />
-
-              <input
-                type="number"
-                placeholder="Precio"
-                value={nuevoProducto.precio}
-                onChange={(e) =>
-                  setNuevoProducto({ ...nuevoProducto, precio: e.target.value })
-                }
-                className="modal-input"
-              />
-
-              <input
-                type="number"
-                placeholder="Stock"
-                value={nuevoProducto.stock}
-                onChange={(e) =>
-                  setNuevoProducto({ ...nuevoProducto, stock: e.target.value })
-                }
-                className="modal-input"
-              />
-            </div>
-
-            <div className="modal-footer">
-              <button
-                onClick={() => setModalAbierto(false)}
-                className="btn-cancelar"
-              >
-                Cancelar
-              </button>
-              <button onClick={handleAgregarProducto} className="btn-guardar">
-                Guardar
-              </button>
-            </div>
-          </div>
+      <Modal visible={modalAbierto} whith={55}>
+        <div className="modal-header">
+          <h3>Agregar Nuevo Producto</h3>
+          <button className="btn-cerrar" onClick={() => setModalAbierto(false)}>
+            <X size={20} />
+          </button>
         </div>
-      )}
 
+        <div className="modal-body grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="Descripción"
+            className="modal-input"
+            name="descripcion"
+            onChange={handleAgregarProducto}
+          />
+
+          <select
+            className="modal-input"
+            onChange={handleAgregarProducto}
+            name="idcategoria"
+          >
+            <option value="">Seleccione categoría</option>
+            {categorias?.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.descripcion}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className="modal-input"
+            onChange={handleAgregarProducto}
+            name="idmarca"
+          >
+            <option value="">Seleccione marca</option>
+            {marcas?.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.descripcion}
+              </option>
+            ))}
+          </select>
+
+          <input
+            type="text"
+            placeholder="Código"
+            className="modal-input"
+            name="codigo"
+            onChange={handleAgregarProducto}
+          />
+
+          <input
+            type="number"
+            placeholder="Stock"
+            className="modal-input"
+            name="stock"
+            onChange={handleAgregarProducto}
+          />
+
+          <select
+            className="modal-input"
+            name="tipoimpuesto"
+            onChange={handleAgregarProducto}
+          >
+            <option value="">Tipo de impuesto</option>
+            <option value="IVA">IVA</option>
+            <option value="EXENTO">Exento</option>
+          </select>
+
+          <input
+            type="number"
+            placeholder="Porcentaje de impuesto"
+            className="modal-input"
+            name="porcentajeimpuesto"
+            onChange={handleAgregarProducto}
+          />
+
+          <input
+            type="number"
+            placeholder="Precio de compra"
+            className="modal-input"
+            name="preciocompra"
+            onChange={handleAgregarProducto}
+          />
+
+          <input
+            type="number"
+            placeholder="Precio de venta"
+            className="modal-input"
+            name="precioventa"
+            onChange={handleAgregarProducto}
+          />
+
+          <input
+            type="text"
+            placeholder="Tipo de producto"
+            className="modal-input"
+            name="tipoproducto"
+            onChange={handleAgregarProducto}
+          />
+
+          <select
+            className="modal-input"
+            name="estado"
+            onChange={handleAgregarProducto}
+          >
+            <option value="">Estado</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+        </div>
+
+        <div className="modal-footer">
+          <button
+            className="btn-guardar"
+            onClick={async () => await grabarProductos()}
+          >
+            Guardar Producto
+          </button>
+        </div>
+      </Modal>
       <Tooltips
         type={tooltipData.type}
         title={tooltipData.title}
