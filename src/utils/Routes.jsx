@@ -3,6 +3,7 @@ import Login from "../Components/Login";
 import Layout from "../Layout/Layout";
 import Productos from "../pages/Productos";
 import Dashborad from "../pages/Dashborad";
+import Pedidos from "../pages/Pedidos";
 
 function AppRoutes() {
   return (
@@ -27,6 +28,16 @@ function AppRoutes() {
           element={
             <Layout>
               <Productos />
+            </Layout>
+          }
+        />
+      </Routes>
+      <Routes>
+        <Route
+          path="/pedidos"
+          element={
+            <Layout>
+              <Pedidos />
             </Layout>
           }
         />

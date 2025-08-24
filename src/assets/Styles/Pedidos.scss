@@ -1,0 +1,352 @@
+
+
+/* Container principal */
+.pedidos-container {
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header del módulo */
+.pedidos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.buscador {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: #64748b;
+    z-index: 1;
+}
+
+.search-input {
+    padding: 12px 16px 12px 44px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 300px;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Filtros de fecha */
+.filtro-fecha {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.fecha-input {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.fecha-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Tooltip container */
+.tooltip-container {
+    position: relative;
+}
+
+.btn-agregar {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.btn-agregar:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.tooltip-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    min-width: 200px;
+    margin-top: 8px;
+}
+
+.tooltip-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.tooltip-option:hover {
+    background: #f1f5f9;
+}
+
+.tooltip-option:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.tooltip-option:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+/* Tabla container */
+.tabla-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Tabla */
+.pedidos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pedidos-tabla thead {
+    background: #f8fafc;
+}
+
+.pedidos-tabla th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.pedidos-tabla td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+.pedidos-tabla tbody tr {
+    transition: all 0.2s ease;
+}
+
+.pedidos-tabla tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* Estados */
+.estado {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 6px;
+}
+
+.estado.pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.estado.aprobado {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.estado.rechazado {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.estado.procesando {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* Acciones */
+.acciones {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-accion {
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-detalles {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-detalles:hover {
+    background: #b3e5fc;
+    transform: translateY(-1px);
+}
+
+.btn-eliminar {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.btn-eliminar:hover {
+    background: #fecaca;
+    transform: translateY(-1px);
+}
+
+/* Estilos específicos para celdas */
+.fecha-cell {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.id-cell {
+    font-weight: 600;
+    color: #374151;
+}
+
+.usuario-cell {
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.sucursal-cell {
+    color: #6366f1;
+    font-weight: 500;
+}
+
+.observacion-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #6b7280;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tooltip-menu {
+    animation: fadeIn 0.2s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pedidos-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .filtros {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .tabla-container {
+        overflow-x: auto;
+    }
+
+    .pedidos-tabla {
+        min-width: 800px;
+    }
+
+    .tooltip-menu {
+        right: auto;
+        left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pedidos-container {
+        padding: 16px;
+    }
+
+    .pedidos-header {
+        padding: 16px;
+    }
+
+    .btn-agregar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filtro-fecha {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fecha-input {
+        width: 100%;
+    }
+}
