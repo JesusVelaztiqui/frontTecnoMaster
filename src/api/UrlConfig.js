@@ -5,3 +5,6 @@ export const urlListarProductos = `${BASEURL}/productos/listarProductos`;
 export const urlGuardarProductos = `${BASEURL}/productos/grabarProductos`;
 export const urlListarCategorias = `${BASEURL}/productos/listarCategorias`;
 export const urlListarMarcas = `${BASEURL}/productos/listarMarcas`;
+export const eliminarProductos = `${BASEURL}/productos/eliminarProductos`;
+export const eliminarCategorias = `${BASEURL}/productos/eliminarCategoria`;
+export const eliminarMarcas = `${BASEURL}/productos/eliminarMarca`;

@@ -150,3 +150,96 @@
   --cts-icon-color: #6b7280;
   --cts-icon-bg: #f3f4f6;
 }
+.eliminar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.eliminar-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.eliminar-header {
+  padding: 20px 20px 0 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.eliminar-title {
+  margin: 0 0 15px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.eliminar-body {
+  padding: 20px;
+}
+
+.eliminar-description {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.eliminar-footer {
+  padding: 0 20px 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.eliminar-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.eliminar-btn-cancelar {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+
+  &:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+  }
+}
+
+.eliminar-btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+
+  &:hover {
+    background-color: #c82333;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+}
