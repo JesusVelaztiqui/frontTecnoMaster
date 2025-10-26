@@ -14,9 +14,9 @@ const Menu = () => {
       },
       { pantalla: "pedidos", icono: "fas fa-people-carry", routes: "/pedidos" },
       {
-        pantalla: "presupuesto",
+        pantalla: "presupuestos",
         icono: "fas fa-calculator",
-        routes: "/presupuesto",
+        routes: "/presupuestos",
       },
       {
         pantalla: "orden de compras",
