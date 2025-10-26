@@ -4,11 +4,7 @@ import Layout from "../Layout/Layout";
 import Productos from "../pages/Productos";
 import Dashborad from "../pages/Dashborad";
 import Pedidos from "../pages/Pedidos";
-<<<<<<< HEAD
-import Presupuestos from "../pages/Presupuestos";
-=======
 import Aperturas from "../pages/Aperturas";
->>>>>>> 420582d (S)
 
 function AppRoutes() {
   return (
