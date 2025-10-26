@@ -27,7 +27,7 @@ const Menu = () => {
       {
         pantalla: "apertura y cierre",
         icono: "fas fa-key",
-        routes: "/apertura-cierre",
+        routes: "/apertura",
       },
       { pantalla: "cobros", icono: "fas fa-dollar-sign", routes: "/cobros" },
       { pantalla: "ventas", icono: "fas fa-chart-line", routes: "/ventas" },
@@ -70,7 +70,7 @@ const Menu = () => {
       {
         pantalla: "apertura y cierre",
         icono: "fas fa-key",
-        routes: "/apertura-cierre",
+        routes: "/apertura",
       },
     ],
     servicios: [
@@ -79,7 +79,7 @@ const Menu = () => {
       {
         pantalla: "ordenes de servicio",
         icono: "fas fa-list",
-        routes: "/ordenes-servicio",
+        routes: "/ordenes",
       },
       { pantalla: "clientes", icono: "fas fa-users", routes: "/clientes" },
     ],

@@ -4,7 +4,11 @@ import Layout from "../Layout/Layout";
 import Productos from "../pages/Productos";
 import Dashborad from "../pages/Dashborad";
 import Pedidos from "../pages/Pedidos";
+<<<<<<< HEAD
 import Presupuestos from "../pages/Presupuestos";
+=======
+import Aperturas from "../pages/Aperturas";
+>>>>>>> 420582d (S)
 
 function AppRoutes() {
   return (
@@ -45,10 +49,17 @@ function AppRoutes() {
       </Routes>
       <Routes>
         <Route
+<<<<<<< HEAD
           path="/presupuestos"
           element={
             <Layout>
               <Presupuestos />
+=======
+          path="/apertura"
+          element={
+            <Layout>
+              <Aperturas />
+>>>>>>> 420582d (S)
             </Layout>
           }
         />
