@@ -49,17 +49,10 @@ function AppRoutes() {
       </Routes>
       <Routes>
         <Route
-<<<<<<< HEAD
-          path="/presupuestos"
-          element={
-            <Layout>
-              <Presupuestos />
-=======
           path="/apertura"
           element={
             <Layout>
               <Aperturas />
->>>>>>> 420582d (S)
             </Layout>
           }
         />
